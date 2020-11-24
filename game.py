@@ -5,6 +5,7 @@ import renderer
 import gameObject
 import background
 import eventHandler
+import audioManager
 
 class Game(object):
     """ The main game Class"""
@@ -23,6 +24,9 @@ class Game(object):
         back = background.Background()
         self.g_renderer.register_object(back,player)
         self.handle = eventHandler.EventHandler(player)
+        self.audio_manager = audioManager.AudioManager()
+        self.audio_manager.register_music("assets/audio/car-racing-computer-game_WM.ogg")
+        self.audio_manager.play_music()
         return
 
     def update(self):
