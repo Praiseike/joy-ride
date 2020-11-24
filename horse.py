@@ -1,5 +1,6 @@
 import pygame
 import gameObject
+import audioManager
 
 class Horse(gameObject.GameObject):
     normal_sprites_path = ["assets/horse/%i.png"%i for i in range(1,8)] # 1.png,2.png,3.png ... 7.png
@@ -10,6 +11,9 @@ class Horse(gameObject.GameObject):
     jump_height = 7
 
     def __init__(self,image_rect):
+        self.audio_manager = audioManager.AudioManager()
+        self.audio_manager.register_sound("assets/audio/gallop.ogg","gallop")
+        self.audio_manager.play_sound("gallop")
         gameObject.GameObject.__init__(self,self.normal_sprites_path[0],image_rect)
         self.prev_pos = self.pos.copy()
         self.t_index = 0
@@ -32,12 +36,14 @@ class Horse(gameObject.GameObject):
 
     def jump_test1(self):
         if(self.jump_height >= -8):
+            self.audio_manager.pause_sound("gallop")
             self.pos.top -= (self.jump_height * abs(self.jump_height)*0.5)
             self.jump_height -= 3
         else:
             self.jump_height = 8
             self.pos = self.prev_pos.copy()
             self.isjump = False
+            self.audio_manager.play_sound("gallop.ogg")
 
     def draw(self,screen):
         if(self.isjump):

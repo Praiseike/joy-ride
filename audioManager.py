@@ -20,3 +20,9 @@ class AudioManager(object):
 
     def play_sound(self,id):
         self.sound_store[id].play()
+
+    def pause_sound(self,id):
+        self.sound_store[id].pause()
+
+    def die(self):
+        mixer.quit()

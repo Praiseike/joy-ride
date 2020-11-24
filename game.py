@@ -27,6 +27,8 @@ class Game(object):
         self.audio_manager = audioManager.AudioManager()
         self.audio_manager.register_music("assets/audio/car-racing-computer-game_WM.ogg")
         self.audio_manager.play_music()
+        self.audio_manager.register_sound("assets/audio/gallop.ogg","gallop")
+        player.audio_manager = self.audio_manager
         return
 
     def update(self):
@@ -38,6 +40,7 @@ class Game(object):
 
 
     def die(self):
+
         print("Exiting")
         pygame.quit()
         return
