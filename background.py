@@ -16,7 +16,8 @@ class Background(gameObject.GameObject):
         
 
     def move(self):
-        """ Implement your own movement """
+        #TODO 
+        """ Custom movement implemetation """
 
     def draw(self,screen):
         self.move()
